@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
 import { MovieDirectorComponent } from '../movie-director/movie-director.component';
+import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -44,6 +45,13 @@ export class MovieCardComponent implements OnInit {
   openDirectorDialog(movie: any): void {
     this.dialog.open(MovieDirectorComponent, {
       data: movie.Director,
+      width: '400px'
+    });
+  }
+
+  openDetailsDialog(movie: any): void {
+    this.dialog.open(MovieDetailsComponent, {
+      data: movie,
       width: '400px'
     });
   }
