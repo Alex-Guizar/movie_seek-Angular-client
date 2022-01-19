@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+
+// Angular Material
+import { MatDialog } from '@angular/material/dialog';
+
+// Custom Components
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
+import { MovieDirectorComponent } from '../movie-director/movie-director.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -9,7 +16,10 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   currentUser: any = '';
-  constructor(public fetchApiData: FetchApiDataService) { }
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.currentUser = localStorage.getItem('user');
@@ -21,6 +31,20 @@ export class MovieCardComponent implements OnInit {
       this.movies = result;
       console.log(this.movies);
       return this.movies;
+    });
+  }
+
+  openGenreDialog(movie: any): void {
+    this.dialog.open(MovieGenreComponent, {
+      data: movie.Genre,
+      width: '400px'
+    });
+  }
+
+  openDirectorDialog(movie: any): void {
+    this.dialog.open(MovieDirectorComponent, {
+      data: movie.Director,
+      width: '400px'
     });
   }
 
