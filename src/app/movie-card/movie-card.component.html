@@ -23,7 +23,11 @@
         color="primary"
       >Synopsis</button>
       
-      <mat-icon>favorite_border</mat-icon>
+      <button 
+        mat-button
+        (click)="addFavorite(movie._id)"
+        aria-label="Add Movie to Favorites"
+      ><mat-icon>favorite_border</mat-icon></button>
     </mat-card-actions>
   </mat-card>
 </div>
