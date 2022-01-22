@@ -1,7 +1,7 @@
-<div>
-  <div>
+<div class="profile-view">
+  <div class="profile-view__info">
     <form>
-      <mat-form-field>
+      <mat-form-field class="profile-view__info__input">
         <input
           matInput
           [(ngModel)]="userData.Username"
@@ -11,7 +11,7 @@
           required
         >
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="profile-view__info__input">
         <input
           matInput
           [(ngModel)]="userData.Password"
@@ -21,7 +21,7 @@
           required
         >
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="profile-view__info__input">
         <input
           matInput
           [(ngModel)]="userData.Email"
@@ -31,7 +31,7 @@
           required
         >
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="profile-view__info__input">
         <input
           matInput
           [(ngModel)]="userData.Birthday"
@@ -41,20 +41,25 @@
         >
       </mat-form-field>
 
-      <button
-        mat-raised-button
-        (click)="updateUser()"
-        color="primary"
-      >Sign Up</button>
-    </form>
+      <div class="profile-view__info__btn-wrap">
+        <button
+          mat-raised-button
+          (click)="updateUser()"
+          color="primary"
+        >Submit</button>
 
-    <button
-      mat-button
-      color="primary"
-      (click)="deleteProfile()"
-    >Delete Profile</button>
+        <button
+          mat-button
+          color="primary"
+          type="button"
+          class="ml-auto"
+          (click)="deleteProfile()"
+        >Delete Profile</button>
+      </div>
+    </form>
   </div>
-  <div>
+
+  <div class="profile-view__list">
     <mat-list>
       <mat-list-item *ngFor="let favorite of favorites;">
         {{favorite.Title}}

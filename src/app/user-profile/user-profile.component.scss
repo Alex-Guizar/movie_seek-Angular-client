@@ -1,3 +1,31 @@
+.profile-view {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > * {
+    box-sizing: border-box;
+    width: 50%;
+    flex: 0 1 50%;
+
+    @media (max-width: 599px) {
+      width: 100%;
+      flex: 0 1 100%;
+    }
+  }
+
+  &__info {
+    padding: 0 16px;
+
+    &__input {
+      display: block;
+    }
+
+    &__btn-wrap {
+      display: flex;
+    }
+  }
+}
+
 .user-fav-list-remove {
   margin-left: auto;
 }
