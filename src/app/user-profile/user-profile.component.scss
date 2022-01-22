@@ -1,12 +1,12 @@
 .profile-view {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 16px;
 
   & > * {
     box-sizing: border-box;
     width: 50%;
     flex: 0 1 50%;
+    margin-top: 24px;
 
     @media (max-width: 599px) {
       width: 100%;
@@ -24,6 +24,11 @@
     &__btn-wrap {
       display: flex;
     }
+  }
+
+  &__list h2 {
+    padding: 0 12px;
+    margin-bottom: 8px;
   }
 }
 

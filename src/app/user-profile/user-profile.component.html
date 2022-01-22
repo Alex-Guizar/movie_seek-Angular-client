@@ -1,5 +1,6 @@
 <div class="profile-view">
   <div class="profile-view__info">
+    <h2>User Details</h2>
     <form>
       <mat-form-field class="profile-view__info__input">
         <input
@@ -60,6 +61,7 @@
   </div>
 
   <div class="profile-view__list">
+    <h2>Favorite Movies</h2>
     <mat-list>
       <mat-list-item *ngFor="let favorite of favorites;">
         {{favorite.Title}}
