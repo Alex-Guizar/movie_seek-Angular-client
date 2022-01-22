@@ -9,6 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 // Angular Material
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -54,6 +55,7 @@ const appRoutes: Routes = [
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
