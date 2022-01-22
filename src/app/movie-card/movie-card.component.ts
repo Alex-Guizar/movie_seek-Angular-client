@@ -17,24 +17,41 @@ import { MovieDetailsComponent } from '../movie-details/movie-details.component'
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   currentUser: any = '';
+  favorites: any[] = [];
+  testing: boolean = false;
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog
   ) { }
 
+  /**
+   * Retrieve user, favorites list from storage
+   * and full movies list on initialization.
+   */
   ngOnInit(): void {
+    const userFavorites: any = localStorage.getItem('favorites');
     this.currentUser = localStorage.getItem('user');
+    if (userFavorites !== null) {
+      this.favorites = JSON.parse(userFavorites);
+    }
     this.getMovies();
   }
 
+  /**
+   * Retrieve movies list from api
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((result: any) => {
       this.movies = result;
-      console.log(this.movies);
       return this.movies;
     });
   }
 
+  /**
+   * Open dialog with genre information
+   * from movie object.
+   * @param movie 
+   */
   openGenreDialog(movie: any): void {
     this.dialog.open(MovieGenreComponent, {
       data: movie.Genre,
@@ -42,6 +59,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Open dialog with director information
+   * from movie object.
+   * @param movie 
+   */
   openDirectorDialog(movie: any): void {
     this.dialog.open(MovieDirectorComponent, {
       data: movie.Director,
@@ -49,6 +71,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Open dialog with movie details
+   * from movie object.
+   * @param movie 
+   */
   openDetailsDialog(movie: any): void {
     this.dialog.open(MovieDetailsComponent, {
       data: movie,
@@ -56,11 +83,28 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  addFavorite(movieId: any): void {
+  /**
+   * Pass current user and movie id to api to
+   * add a movie to the favorites list.
+   * @param movieId string
+   */
+  addFavorite(movieId: string): void {
     this.fetchApiData.addUserFavorite(this.currentUser, movieId).subscribe((result: any) => {
       // Add color change to favorite icon
-      console.log(result);
+      this.favorites = result.FavoriteMovies;
       localStorage.setItem('favorites', JSON.stringify(result.FavoriteMovies));
     });
+  }
+
+  /**
+   * Pass current user and movie id to api to
+   * remove a movie to the favorites list.
+   * @param movieId string
+   */
+  removeFavorite(movieId: string): void {
+    this.fetchApiData.deleteUserFavorite(this.currentUser, movieId).subscribe((result: any) => {
+      this.favorites = result.FavoriteMovies;
+      localStorage.setItem('favorites', JSON.stringify(result.FavoriteMovies));
+    })
   }
 }

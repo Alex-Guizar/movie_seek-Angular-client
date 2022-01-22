@@ -30,9 +30,19 @@
       
       <button 
         mat-button
-        (click)="addFavorite(movie._id)"
+        (click)="removeFavorite(movie._id)"
         aria-label="Add Movie to Favorites"
-      ><mat-icon>favorite_border</mat-icon></button>
+        *ngIf="favorites.includes(movie._id); else notFavorite"
+        color="accent"
+      ><mat-icon>favorite</mat-icon></button>
+
+      <ng-template #notFavorite>
+        <button 
+          mat-button
+          (click)="addFavorite(movie._id)"
+          aria-label="Add Movie to Favorites"
+        ><mat-icon>favorite_border</mat-icon></button>
+      </ng-template>
     </mat-card-actions>
   </mat-card>
 </div>
