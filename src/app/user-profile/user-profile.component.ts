@@ -25,19 +25,33 @@ export class UserProfileComponent implements OnInit {
     this.getFavoriteMovies();
   }
 
+  /**
+   * Sends current user and new user data to the
+   * edit user api.
+   */
   updateUser(): void {
     this.fetchApiData.editUser(this.currentUser, this.userData).subscribe((result: any) => {
       // Logic for a successful user registration goes here! (To be implemented)
-      this.snackBar.open(result, 'OK', {
+      let respMsg = ''
+      if (Object.keys(result).length) {
+        respMsg = "Success!"
+      }
+      this.snackBar.open(respMsg, 'OK', {
         duration: 2000
       });
     }, (result) => {
-      this.snackBar.open(result, 'OK', {
+      let respMsg = 'I\'m sorry, something seems to have gone wrong. Please try again.'
+      this.snackBar.open(respMsg, 'OK', {
         duration: 2000
       });
     });
   }
 
+  /**
+   * Retrieves full list of movies, then compares movie ids
+   * from the saved local storage favorites list to display
+   * the favorited movie information.
+   */
   getFavoriteMovies(): void {
     if (localStorage.getItem('favorites')) {
       const storedFavoritesString: any = localStorage.getItem('favorites');
@@ -56,7 +70,13 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  removeFavoriteMovie(movieId: any): void {
+  /**
+   * Passes current user and movie id to the delete user
+   * favorite endpoint. Removing the specified movie
+   * from the list.
+   * @param movieId string
+   */
+  removeFavoriteMovie(movieId: string): void {
     this.fetchApiData.deleteUserFavorite(this.currentUser, movieId).subscribe((result: any) => {
       // Logic for a successful user registration goes here! (To be implemented)
       localStorage.setItem('favorites', JSON.stringify(result.FavoriteMovies));
@@ -68,6 +88,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Passes the current user to the delete user
+   * endpoint, removing their profile. Then deletes 
+   * all local storage items on success.
+   */
   deleteProfile(): void {
     this.fetchApiData.deleteUser(this.currentUser).subscribe((result: any) => {
       localStorage.removeItem('token');
