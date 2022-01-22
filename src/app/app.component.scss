@@ -1,0 +1,23 @@
+.toolbar-logo {
+  font-size: 20px;
+  padding: 0;
+}
+
+.toolbar-btn {
+  min-width:40px;
+  padding: 0 4px;
+
+  &__icon {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+  }
+}
+
+.logout-btn {
+  margin-left: 16px;
+}
+
+.settings-btn {
+  margin-left: auto;
+}
