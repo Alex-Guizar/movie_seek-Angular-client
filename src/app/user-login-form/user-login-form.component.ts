@@ -37,9 +37,6 @@ export class UserLoginFormComponent implements OnInit {
       localStorage.setItem('user', result.user.Username);
       localStorage.setItem('favorites', JSON.stringify(result.user.FavoriteMovies));
       this.router.navigate(['movies']);
-      this.snackBar.open(result, 'OK', {
-        duration: 2000
-      });
     }, (result) => {
       this.snackBar.open(result, 'OK', {
         duration: 2000
