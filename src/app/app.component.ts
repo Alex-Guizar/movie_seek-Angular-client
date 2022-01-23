@@ -1,3 +1,7 @@
+/**
+ * Main App component. Holds the toolbar header, tracking the logged in status.
+ * @module
+ */
 import { Component } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 

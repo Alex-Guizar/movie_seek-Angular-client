@@ -1,8 +1,15 @@
+/**
+ * Form for a user to create a profile. Accepts a Username, Password, Email, and Birthday.
+ * @module
+ */
 import { Component, OnInit, Input } from '@angular/core';
 
+// Angular Material
 import { MatDialogRef } from '@angular/material/dialog';
-import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+// Custom Components
+import { FetchApiDataService } from '../fetch-api-data.service';
 
 @Component({
   selector: 'app-user-registration-form',

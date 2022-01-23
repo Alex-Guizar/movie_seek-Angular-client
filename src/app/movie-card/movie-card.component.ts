@@ -1,3 +1,7 @@
+/**
+ * Displays a list of available movies with links to more information about genres and directors.
+ * @module
+ */
 import { Component, OnInit } from '@angular/core';
 
 // Angular Material
@@ -18,7 +22,6 @@ export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   currentUser: any = '';
   favorites: any[] = [];
-  testing: boolean = false;
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog
@@ -50,7 +53,7 @@ export class MovieCardComponent implements OnInit {
   /**
    * Open dialog with genre information
    * from movie object.
-   * @param movie 
+   * @param movie Movie object containing genre data
    */
   openGenreDialog(movie: any): void {
     this.dialog.open(MovieGenreComponent, {
@@ -62,7 +65,7 @@ export class MovieCardComponent implements OnInit {
   /**
    * Open dialog with director information
    * from movie object.
-   * @param movie 
+   * @param movie Movie object containing director data
    */
   openDirectorDialog(movie: any): void {
     this.dialog.open(MovieDirectorComponent, {
@@ -74,7 +77,7 @@ export class MovieCardComponent implements OnInit {
   /**
    * Open dialog with movie details
    * from movie object.
-   * @param movie 
+   * @param movie Movie object containing description details
    */
   openDetailsDialog(movie: any): void {
     this.dialog.open(MovieDetailsComponent, {
@@ -86,7 +89,7 @@ export class MovieCardComponent implements OnInit {
   /**
    * Pass current user and movie id to api to
    * add a movie to the favorites list.
-   * @param movieId string
+   * @param movieId String containing a movie's id
    */
   addFavorite(movieId: string): void {
     this.fetchApiData.addUserFavorite(this.currentUser, movieId).subscribe((result: any) => {

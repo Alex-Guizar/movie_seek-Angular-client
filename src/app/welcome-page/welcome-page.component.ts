@@ -1,3 +1,7 @@
+/**
+ * Welcome page for users that do not have a profile or have not logged in.
+ * @module
+ */
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 

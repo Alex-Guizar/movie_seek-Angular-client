@@ -1,3 +1,7 @@
+/**
+ * Displays a form to update the user's profile information and a list of the user's favorited movies.
+ * @module
+ */
 import { Component, OnInit, Input } from '@angular/core';
 
 import { FetchApiDataService } from '../fetch-api-data.service';

@@ -1,3 +1,7 @@
+/**
+ * Form allowing a user to log in, saving their token and basic information to the local storage.
+ * @module
+ */
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
